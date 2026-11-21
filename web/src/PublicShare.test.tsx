@@ -9,6 +9,26 @@ import { afterEach, expect, it, vi } from "vitest";
 import { PublicShare } from "./PublicShare";
 
 afterEach(() => vi.unstubAllGlobals());
+function stubFetchWithLicense(
+  shareFetch: (
+    input: RequestInfo | URL,
+    init?: RequestInit,
+  ) => Promise<Response>,
+) {
+  vi.stubGlobal("fetch", (input: RequestInfo | URL, init?: RequestInit) => {
+    if (String(input) === "/api/public/license") {
+      return Promise.resolve(
+        new Response(
+          JSON.stringify({
+            license: "AGPL-3.0-only",
+            source_url: "https://example.org/source.zip",
+          }),
+        ),
+      );
+    }
+    return shareFetch(input, init);
+  });
+}
 it("retains password retry after rejection and does not reserve a slot on page open", async () => {
   history.replaceState(null, "", "/s/#synthetic-public-token");
   vi.stubGlobal("matchMedia", () => ({ matches: false }));
@@ -34,7 +54,7 @@ it("retains password retry after rejection and does not reserve a slot on page o
         }),
       ),
     );
-  vi.stubGlobal("fetch", fetchMock);
+  stubFetchWithLicense(fetchMock);
   render(<PublicShare />);
   await screen.findByLabelText("访问密码");
   fireEvent.change(screen.getByLabelText("访问密码"), {
@@ -76,7 +96,7 @@ it("switches links in one tab and ignores a stale verification response", async 
         }),
       ),
     );
-  vi.stubGlobal("fetch", fetchMock);
+  stubFetchWithLicense(fetchMock);
   render(<PublicShare />);
   await waitFor(() => expect(fetchMock).toHaveBeenCalledTimes(1));
   act(() => {

@@ -1,7 +1,7 @@
 # Third-party notices
 
-FileMind AI's original source code is licensed under MIT. Dependencies retain
-their own licenses; MIT does not replace those licenses.
+The current FileMind AI original source is licensed under AGPL-3.0-only.
+Dependencies retain their own licenses; this change does not relicense upstream code.
 
 Python dependencies are pinned in `requirements.lock`; browser dependencies and
 their dependency metadata are pinned in `web/package-lock.json`.

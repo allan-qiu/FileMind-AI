@@ -61,6 +61,7 @@ def source_files():
     for name in (
         "README.md",
         "LICENSE",
+        "NOTICE.md",
         "THIRD_PARTY_NOTICES.md",
         "CONTRIBUTING.md",
         "SECURITY.md",

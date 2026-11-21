@@ -1,7 +1,9 @@
-from PySide6.QtCore import Signal
+from PySide6.QtCore import QUrl, Signal
+from PySide6.QtGui import QDesktopServices
 from PySide6.QtWidgets import QCheckBox, QComboBox, QFormLayout, QLineEdit
 
 from filemind.domain.models import Theme
+from filemind.licensing import DEFAULT_SOURCE_URL, SPDX_LICENSE
 from filemind.services.application import ApplicationService
 from filemind.services.classification import AIProvider
 from filemind.ui.widgets import Card, Page, button, label
@@ -33,6 +35,12 @@ class SettingsPage(Page):
         self.feedback = label("", "Muted")
         appearance.body.addWidget(self.feedback)
         self.body.addWidget(appearance)
+        licensing = Card("许可与源码")
+        licensing.body.addWidget(label("FileMind AI · " + SPDX_LICENSE))
+        source = button("获取对应版本源码")
+        source.clicked.connect(lambda: QDesktopServices.openUrl(QUrl(DEFAULT_SOURCE_URL)))
+        licensing.body.addWidget(source)
+        self.body.addWidget(licensing)
         storage = Card("本地存储")
         for name, path in (
             ("配置文件", service.paths.config_file),
@@ -66,9 +74,7 @@ class SettingsPage(Page):
         form.addRow("API 密钥", self.ai_key)
         form.addRow("模型名称", self.ai_model)
         config.body.addLayout(form)
-        self.ai_authorized = QCheckBox(
-            "同意发送文件摘要（可能产生费用）"
-        )
+        self.ai_authorized = QCheckBox("同意发送文件摘要（可能产生费用）")
         config.body.addWidget(self.ai_authorized)
         config.body.addWidget(
             label("发送内容包括文件名、元数据和有界摘要，费用按服务商规则计算。", "Muted")

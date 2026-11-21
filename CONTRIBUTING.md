@@ -10,3 +10,7 @@ write a real cloud account, modify a production service or require credentials.
 Report the concrete behavior changed, relevant tests and remaining limitations.
 Do not attach runtime databases, keys, passwords, access tokens or private files.
 FileMind does not implement antivirus, malware detection or quarantine features.
+
+Contributions to the current release are under AGPL-3.0-only. Preserve copyright
+and third-party notices, and update the corresponding-source offer when deploying
+a modified network version.

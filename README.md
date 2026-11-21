@@ -2,7 +2,7 @@
 
 Windows 文件整理客户端，配套 FastAPI 中央服务、React 用户端和管理后台。
 
-**V2.6.2 预发布候选版 · MIT**。适合本地试用、自建服务与开发复核。
+**V2.6.3 预发布候选版 · AGPL-3.0-only**。适合本地试用、自建服务与开发复核。
 
 ## 日常使用
 
@@ -25,7 +25,7 @@ Windows 文件整理客户端，配套 FastAPI 中央服务、React 用户端和
 
 ## Windows 安装
 
-维护者可在 GitHub Releases 中上传 `FileMind_AI_2.6.2_Windows_x64.msi`。源码仓库本身不内置安装包或可用云端账户。安装包未签名。
+维护者可在 GitHub Releases 中上传 `FileMind_AI_2.6.3_Windows_x64.msi`。源码仓库本身不内置安装包或可用云端账户。安装包未签名。
 
 安装版数据保存在当前用户的应用数据目录，独立于程序安装目录。程序不内置项目维护者的服务器、SSH 密钥、账号或 AI 密钥。安装版默认连接本机 `http://127.0.0.1:18765`；如自建服务监听 8765，请在“连接设置”中修改。远程地址须为 HTTPS；本地开发允许回环 HTTP。
 
@@ -66,8 +66,10 @@ npm.cmd --prefix web run build
 - [架构](docs/V2_6_ARCHITECTURE.md) · [API](docs/V2_6_API.md)
 - [部署与发布](docs/PUBLIC_RELEASE.md) · [版本变化](CHANGELOG.md)
 - [贡献指南](CONTRIBUTING.md) · [问题报告](SECURITY.md)
-- [MIT](LICENSE) · [第三方许可](THIRD_PARTY_NOTICES.md)
+- [AGPL-3.0](LICENSE) · [第三方许可](THIRD_PARTY_NOTICES.md)
 
 ## 预发布限制
 
 手机实机、第二台 Windows 与公网 HTTPS 未作为本次公开版的通过项。客户端账户界面的登录后人工验收仍待完成；真实服务器 API 检查与 Mock 窗口测试分别记录。生产部署需要独立资源检查、备份恢复和受控部署授权。
+
+许可变更、旧版授权边界和源码提供要求见 [许可变更说明](docs/LICENSE_TRANSITION.md)。

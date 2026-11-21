@@ -33,14 +33,14 @@ jobs:
         working-directory: web
       - run: dotnet tool install --tool-path .artifacts/wix wix --version 5.0.2
       - run: python scripts/build_windows_installer.py --wix .artifacts/wix/wix.exe --output .artifacts/windows-release
-      - run: python scripts/release.py --series 2.6.2 --stage GitHub --final-names
+      - run: python scripts/release.py --series 2.6.3 --stage GitHub --final-names
       - name: Assemble release assets
         shell: pwsh
         run: |
           New-Item -ItemType Directory -Force dist/release | Out-Null
           Copy-Item .artifacts/windows-release/*.msi dist/release/
-          Copy-Item deliveries/V2.6.2/GitHub/*.zip dist/release/
-          Copy-Item deliveries/V2.6.2/GitHub/*清单.json dist/release/
+          Copy-Item deliveries/V2.6.3/GitHub/*.zip dist/release/
+          Copy-Item deliveries/V2.6.3/GitHub/*清单.json dist/release/
           Get-ChildItem dist/release -File | Sort-Object Name | ForEach-Object {
             $digest = (Get-FileHash -LiteralPath $_.FullName -Algorithm SHA256).Hash.ToLower()
             "$digest  $($_.Name)"

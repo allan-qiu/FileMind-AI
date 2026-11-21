@@ -4,6 +4,7 @@ import { ApiClient, ApiError, errorMessage } from "./api";
 import { bytes, when } from "./types";
 import { hex, secret } from "./share";
 import "./share.css";
+import { LicenseNotice } from "./LicenseNotice";
 
 type Info = {
   password_required: boolean;
@@ -346,6 +347,9 @@ export function PublicShare() {
         </section>
       )}
       {!info && !error && <p role="status">正在验证分享…</p>}
+      <footer>
+        <LicenseNotice />
+      </footer>
     </main>
   );
 }

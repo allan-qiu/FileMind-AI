@@ -21,6 +21,7 @@ import { ArchiveAdmin } from "./ArchiveAdmin";
 import { LibraryAdmin } from "./LibraryAdmin";
 import { ShareAdmin } from "./ShareAdmin";
 import { Status } from "./components";
+import { LicenseNotice, RELEASE_VERSION } from "./LicenseNotice";
 import { type Session, type User, type PublicConfig, roleNames } from "./types";
 
 export function Portal({ admin = false }: { admin?: boolean }) {
@@ -168,6 +169,7 @@ export function Portal({ admin = false }: { admin?: boolean }) {
     return (
       <div className="starting" role="status">
         正在连接 FileMind 中央服务…
+        <LicenseNotice />
       </div>
     );
   if (!user)
@@ -201,11 +203,11 @@ export function Portal({ admin = false }: { admin?: boolean }) {
             </p>
             <div className="auth-note">
               <span className="dot" />
-              中央服务 · V2.2 本地开发版
+              中央服务 · V{RELEASE_VERSION}
             </div>
           </div>
           <span className="muted">
-            FILEMIND 2.4.0 / {admin ? "ADMIN" : "WORKSPACE"}
+            FILEMIND {RELEASE_VERSION} / {admin ? "ADMIN" : "WORKSPACE"}
           </span>
         </aside>
         <main className="auth-main">
@@ -319,6 +321,9 @@ export function Portal({ admin = false }: { admin?: boolean }) {
                 : "DeviceLink、独立归档和基础文件目录已开放；本地整理可离线运行。"}
             </p>
           </div>
+          <footer>
+            <LicenseNotice />
+          </footer>
         </main>
       </div>
     );
@@ -360,7 +365,7 @@ export function Portal({ admin = false }: { admin?: boolean }) {
           <a href={admin ? "/app/" : "/admin/"}>
             {admin ? "打开用户端" : "打开管理控制台"} <ChevronRight size={14} />
           </a>
-          <small>VERSION 2.6.0 RC1 · LOCAL CANDIDATE</small>
+          <small>VERSION {RELEASE_VERSION} · AGPL-3.0</small>
         </div>
       </aside>
       {mobileOpen && (
@@ -442,7 +447,9 @@ export function Portal({ admin = false }: { admin?: boolean }) {
               <UserPages page={page} api={api} user={user} run={run} />
             )}
           </fieldset>
-          <footer>FileMind AI · 本地开发版 / 仅展示真实接口数据</footer>
+          <footer>
+            FileMind AI · <LicenseNotice />
+          </footer>
         </main>
       </div>
     </div>

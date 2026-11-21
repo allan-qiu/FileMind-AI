@@ -1,5 +1,12 @@
 # Changelog
 
+## 2.6.3 — AGPL-3.0 license update
+
+- Replace the current MIT project license with AGPL-3.0-only; preserve historical grants.
+- Add public versioned corresponding-source links and configurable server source metadata.
+- Align Windows, Web and server release/license metadata.
+- Retain the CI Python 3.12-series fix for available GitHub Windows toolchains.
+
 ## 2.6.2 — GitHub pre-release preparation
 
 - Retain the simplified Windows file organization and server workspace entry.

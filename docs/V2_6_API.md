@@ -19,3 +19,9 @@
 DeepSeek 响应必须带与请求一致的 model；JSON/分类/路径/扩展名、关联权限校验保持。已知截断的 Token/费用写入 UNKNOWN，不能释放预留再盲重试。
 
 无新增数据库迁移。`.env.example` 仅空凭据和本地默认；`scripts/deploy-v2_6/filemind.env.example` 为待批准的共机低资源模板。完整既有接口仍见 V2_5_API、V2_4_API、V2_3_API，不移除旧路由。
+# V2.6.3 许可与源码补充
+
+`GET /api/public/license` 无需登录，返回 `version`、`license`（AGPL-3.0-only）和
+`source_url`。部署修改版时用 `FILEMIND_SOURCE_URL` 指向实际运行版本的完整相应源码。
+地址必须为不含凭据、查询参数和片段的 HTTPS URL（本机开发可用回环 HTTP）。此接口
+不返回用户数据、密钥或其他服务配置。原有文件库等受保护接口继续要求认证。

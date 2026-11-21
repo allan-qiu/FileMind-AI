@@ -8,7 +8,7 @@ Only the exported directory is intended for a new public repository; do not push
 the original development Git history or attach old private acceptance archives.
 
 The export retains complete application code, migrations, tests, startup scripts,
-generic deployment templates, locked dependencies, MIT and dependency notices.
+generic deployment templates, locked dependencies, AGPL-3.0 and dependency notices.
 Historical machine-specific evidence is omitted and reported in the local export
 manifest. Public README is generated from `docs/github/README.md`.
 
@@ -44,11 +44,11 @@ For local packaging use `scripts/build_windows_installer.py --wix <wix.exe>
 --output <isolated-build-directory>`. Keep the dependency notices with the MSI.
 Build the public export, not an unrelated developer working tree.
 
-Create a **draft pre-release** for tag `v2.6.2` after reviewing CI results. Attach
+Create a **draft pre-release** for tag `v2.6.3` after reviewing CI results. Attach
 the MSI, complete source review ZIP, stage summary ZIP and SHA256SUMS.txt. Mark
 unverified physical-device, external Provider and production checks accurately.
 
-The project MIT license does not replace dependency licenses. Qt libraries are
+The project AGPL-3.0-only license does not replace dependency licenses. Qt libraries are
 distributed separately under `_internal`; upstream source and license texts are
 listed in THIRD_PARTY_NOTICES.md. No production server/account is supplied.
 
@@ -61,3 +61,12 @@ listed in THIRD_PARTY_NOTICES.md. No production server/account is supplied.
 
 Actions are pinned to the verified official v7 tag commits at preparation time.
 Their hosted execution is pending until this source is uploaded and workflows run.
+
+## Corresponding source for network users
+
+The Web, Admin and share pages expose a public source link. `/api/public/license`
+returns the release version, SPDX identifier and source URL. Set FILEMIND_SOURCE_URL
+to a public archive of the exact deployed version, including your modifications,
+build instructions and required files. A link to unmodified upstream source does
+not substitute for providing your modified version. Never include credentials or
+user data in the source archive. See docs/LICENSE_TRANSITION.md.

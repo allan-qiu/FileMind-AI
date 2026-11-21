@@ -8,6 +8,8 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse, RedirectResponse
 from starlette.middleware.trustedhost import TrustedHostMiddleware
 
+from filemind import __version__
+from filemind.licensing import SPDX_LICENSE
 from filemind_server.ai_control import ClassificationPlanner
 from filemind_server.archives import ArchiveService
 from filemind_server.config import Settings
@@ -199,8 +201,16 @@ def create_app(settings: Settings | None = None) -> FastAPI:
         return {
             "status": "ok",
             "service": "filemind-central",
-            "version": "2.6.0rc1",
+            "version": __version__,
             "schema_version": 11,
+        }
+
+    @app.get("/api/public/license")
+    def public_license():
+        return {
+            "version": __version__,
+            "license": SPDX_LICENSE,
+            "source_url": settings.source_url,
         }
 
     for router in (

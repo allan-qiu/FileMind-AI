@@ -6,6 +6,7 @@ import importlib.util
 import json
 import re
 import subprocess
+import tomllib
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -13,6 +14,7 @@ PUBLIC_DOCS = {
     "docs/V2_6_ARCHITECTURE.md",
     "docs/V2_6_API.md",
     "docs/PUBLIC_RELEASE.md",
+    "docs/LICENSE_TRANSITION.md",
     "docs/github/README.md",
 }
 OMIT_SCRIPTS = {
@@ -119,6 +121,7 @@ def export_public(output: Path) -> dict:
     required = {
         "LICENSE",
         "THIRD_PARTY_NOTICES.md",
+        "licenses/AGPL-3.0.txt",
         "licenses/LGPL-3.0.txt",
         "licenses/GPL-3.0.txt",
         ".github/workflows/ci.yml",
@@ -138,8 +141,12 @@ def export_public(output: Path) -> dict:
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_bytes(raw)
     report = {
-        "version": "2.6.2",
-        "license": "MIT",
+        "version": tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))["project"][
+            "version"
+        ],
+        "license": tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))["project"][
+            "license"
+        ],
         "history_exported": False,
         "files": {name: hashlib.sha256(raw).hexdigest() for name, raw in files.items()},
         "omitted_historical_files": omitted,

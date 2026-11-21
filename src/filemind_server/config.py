@@ -1,13 +1,36 @@
 import os
 from pathlib import Path
+from urllib.parse import urlsplit
 
 from dotenv import dotenv_values
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator
+
+from filemind.licensing import DEFAULT_SOURCE_URL
 
 PROJECT_ROOT = Path(__file__).resolve().parents[2]
 
 
 class Settings(BaseModel):
+    source_url: str = DEFAULT_SOURCE_URL
+
+    @field_validator("source_url")
+    @classmethod
+    def validate_source_url(cls, value: str) -> str:
+        value = value.strip()
+        parsed = urlsplit(value)
+        local = parsed.hostname in {"localhost", "127.0.0.1", "::1"}
+        if (
+            not parsed.hostname
+            or parsed.scheme not in {"http", "https"}
+            or (parsed.scheme == "http" and not local)
+            or parsed.username
+            or parsed.password
+            or parsed.query
+            or parsed.fragment
+        ):
+            raise ValueError("源码地址须为不含凭据的公开 HTTPS 地址，或本机 HTTP 地址。")
+        return value
+
     data_dir: Path = PROJECT_ROOT / ".filemind-server"
     session_seconds: int = Field(default=28800, ge=60, le=604800)
     secure_cookies: bool = False
@@ -52,6 +75,7 @@ class Settings(BaseModel):
         ):
             raise ValueError("服务端数据必须位于指定根目录的独立、非链接子目录。")
         return cls(
+            source_url=values.get("FILEMIND_SOURCE_URL", DEFAULT_SOURCE_URL),
             relay_enabled=values.get("FILEMIND_RELAY_ENABLED", "true").lower() == "true",
             allow_paid_ai=values.get("FILEMIND_ALLOW_PAID_AI", "false").lower() == "true",
             archive_worker_enabled=values.get("FILEMIND_ARCHIVE_WORKER", "true").lower() == "true",
