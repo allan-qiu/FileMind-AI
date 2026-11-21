@@ -42,6 +42,12 @@ def test_native_archive_upload_consent_and_library_over_real_http(
     qtbot.mouseClick(dialog.upload_button, Qt.MouseButton.LeftButton)
     qtbot.waitUntil(lambda: not dialog.worker.busy, timeout=10000)
     qtbot.waitUntil(lambda: dialog.library.rowCount() == 1, timeout=10000)
+    # Jobs and library are fetched separately; archive completion can occur
+    # between those requests. Wait for the next task poll before asserting.
+    qtbot.waitUntil(
+        lambda: bool(dialog.rows) and dialog.rows[0]["state"] == "COMPLETED",
+        timeout=10000,
+    )
     assert dialog.bar.value() == 100
     assert dialog.library.item(0, 0).text() == source.name
     assert dialog.rows[0]["state"] == "COMPLETED"
