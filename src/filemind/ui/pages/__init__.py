@@ -1,0 +1,1 @@
+"""The seven desktop destinations."""

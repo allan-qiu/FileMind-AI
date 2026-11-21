@@ -1,0 +1,139 @@
+.share-stack {
+  display: grid;
+  gap: 24px;
+}
+.share-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: 16px;
+  border: 0;
+  padding: 0;
+  margin: 16px 0;
+  min-width: 0;
+}
+.share-form p,
+.share-form h3 {
+  grid-column: 1/-1;
+}
+.share-form label,
+.share-result label,
+.share-filters label {
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+}
+.share-form input,
+.share-form select {
+  width: 100%;
+  min-width: 0;
+}
+.share-form input[type="checkbox"] {
+  width: auto;
+}
+.share-filters {
+  display: flex;
+  gap: 16px;
+  align-items: end;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.share-id {
+  display: block;
+  overflow-wrap: anywhere;
+}
+.share-history {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-size: 13px;
+  max-height: 500px;
+  overflow: auto;
+}
+.share-result {
+  display: grid;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.public-share {
+  max-width: 760px;
+  margin: auto;
+  padding: clamp(16px, 5vw, 48px);
+  min-height: 100dvh;
+  font-size: 16px;
+}
+.public-share .actions,
+.share-stack .actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  margin: 16px 0;
+}
+.public-share button {
+  appearance: none;
+  background: var(--surface);
+  color: var(--text);
+}
+.public-share button.primary {
+  background: var(--accent);
+  color: var(--on-accent);
+}
+.public-share > p {
+  margin: 16px 0;
+}
+.public-share h1 {
+  font-size: clamp(28px, 7vw, 42px);
+}
+.public-share button,
+.share-stack button {
+  min-height: 44px;
+}
+.public-share .actions {
+  flex-wrap: wrap;
+}
+.public-share progress {
+  width: 100%;
+  height: 20px;
+}
+.public-share dl {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 12px;
+}
+.public-share dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.public-share .share-file-title {
+  overflow-wrap: anywhere;
+}
+.public-share .public-password {
+  display: grid;
+  gap: 12px;
+}
+.share-settings {
+  width: 100%;
+  min-height: 400px;
+  font-family: monospace;
+}
+.share-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 16px;
+}
+.share-metric {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+}
+.share-metric strong {
+  display: block;
+  font-size: 26px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .public-share * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

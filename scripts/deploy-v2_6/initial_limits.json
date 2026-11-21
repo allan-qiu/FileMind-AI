@@ -1,0 +1,35 @@
+{
+  "scope": "DESIGN_ONLY: apply through authenticated Admin after explicit deployment approval",
+  "archive_settings": {
+    "enabled": false,
+    "concurrency": 1,
+    "upload_concurrency": 1,
+    "cache_bytes": 268435456,
+    "max_file_bytes": 67108864,
+    "ttl_seconds": 86400,
+    "lease_seconds": 60,
+    "backup_grace_seconds": 30,
+    "max_retries": 3,
+    "provider": "local"
+  },
+  "share_settings": {
+    "allow_temporary": true,
+    "allow_library": true,
+    "default_ttl": 86400,
+    "max_ttl": 604800,
+    "default_downloads": 3,
+    "max_downloads": 20,
+    "max_file_bytes": 67108864,
+    "user_temp_bytes": 134217728,
+    "total_temp_bytes": 268435456,
+    "max_concurrency": 1,
+    "user_concurrency": 1,
+    "share_concurrency": 1,
+    "session_ttl": 900,
+    "cleanup_interval": 60,
+    "upload_ttl": 3600,
+    "bytes_per_second": 1048576,
+    "user_daily_bytes": 536870912,
+    "event_retention_days": 30
+  }
+}

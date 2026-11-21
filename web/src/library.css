@@ -1,0 +1,140 @@
+.library-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.library-heading h1 {
+  margin: 0;
+}
+.library-layout {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 20px;
+  align-items: start;
+}
+.library-main {
+  min-width: 0;
+  display: grid;
+  gap: 20px;
+}
+.library-tree {
+  position: sticky;
+  top: 24px;
+}
+.library-tree nav {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 24px;
+}
+.library-tree nav button {
+  justify-content: flex-start;
+}
+.library-tree button[aria-current="page"] {
+  background: var(--tint);
+  color: var(--accent);
+  border-color: var(--accent);
+}
+.library-tree label {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.library-layout input,
+.library-layout select {
+  min-width: 0;
+  max-width: 100%;
+  width: 100%;
+}
+.library-layout button,
+.library-layout a.button {
+  min-height: 44px;
+}
+.library-layout details {
+  margin: 16px 0;
+}
+.library-layout summary {
+  cursor: pointer;
+  padding: 8px 0;
+}
+.library-filters {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 16px;
+  margin: 16px 0;
+}
+.library-filters label {
+  display: grid;
+  gap: 8px;
+}
+.library-layout .actions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 16px 0;
+}
+.library-file {
+  text-align: left;
+  overflow-wrap: anywhere;
+  justify-content: flex-start;
+}
+.library-layout td {
+  overflow-wrap: anywhere;
+}
+.library-layout .table-wrap {
+  max-width: 100%;
+  overflow: auto;
+}
+.library-hash,
+.library-metadata dd,
+.library-conflicts dd {
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+  margin: 0;
+}
+.library-metadata,
+.library-conflicts dl {
+  display: grid;
+  grid-template-columns: 100px minmax(0, 1fr);
+  gap: 12px;
+}
+.library-conflicts article {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px;
+  margin: 16px 0;
+}
+.library-progress {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 16px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  border-radius: 12px;
+}
+@media (max-width: 1000px) {
+  .library-layout {
+    grid-template-columns: 1fr;
+  }
+  .library-tree {
+    position: static;
+  }
+  .library-tree nav {
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  }
+}
+@media (max-width: 760px) {
+  .library-layout .card {
+    padding: 16px;
+  }
+  .library-metadata {
+    grid-template-columns: 1fr;
+  }
+  .library-metadata dt {
+    font-weight: 600;
+  }
+}

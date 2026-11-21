@@ -1,0 +1,36 @@
+.venv/
+.cache/
+.filemind/
+.filemind-server/
+.env
+deliveries/
+web/node_modules/
+web/dist/
+web/.vite/
+.artifacts/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.pytest_tmp/
+.ruff_cache/
+build/
+dist/
+# Server key vaults remain excluded even with a custom project-local data directory.
+**/private/ai.key
+**/private/ai.new
+**/private/baidu.credentials
+**/private/baidu-*.new
+# Runtime and credentials at custom locations must also stay out of Git.
+.env.*
+!.env.example
+**/private/
+*.sqlite3*
+*.db
+*.pem
+*.key
+*.pfx
+*.p12
+*.log
+.DS_Store
+Thumbs.db
